@@ -31,11 +31,14 @@ async function generateImageRequest(prompt,size) {
             throw new Error("That image could not be gerated");
         }
     
-        const data = await res.json();
-        console.log(data);
-        const imageUrl = data.data;
-        document.querySelector("#image").src = imageUrl;
+      res.json().then(r => {
+            const imageUrl = r.data;
+            document.querySelector("#image").src = imageUrl;
+            hideSpinner();
+      }).catch(e => {
+        document.querySelector('.msg').textContent = e;
         hideSpinner();
+        });
     } catch (e) {
         document.querySelector('.msg').textContent = e;
         hideSpinner();
