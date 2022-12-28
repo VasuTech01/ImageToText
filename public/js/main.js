@@ -30,7 +30,7 @@ async function generateImageRequest(prompt,size) {
             throw new Error("That image could not be gerated");
         }
         console.log(res);
-          const r=await res.json();
+          const r=res.json();
            console.log(r);
             const imageUrl = r.data;
             document.querySelector("#image").src = imageUrl;
